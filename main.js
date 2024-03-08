@@ -54,19 +54,27 @@ allButtons.forEach(el => {
 })
 
 function handleButtonClick(e) {
-  // remove active class from any and all buttons
-  allButtons.forEach(el => el.classList.remove("active"))
+  // Remove active class from all buttons
+  document.querySelectorAll(".filter-button").forEach(button => button.classList.remove("active"));
 
-  // add active class to the specific button that just got clicked
-  e.target.classList.add("active")
+  // Add active class to the clicked button
+  e.target.classList.add("active");
 
-  // actually filter the pets down below
-  const currentFilter = e.target.dataset.filter
-  document.querySelectorAll(".pet-card").forEach(el => {
-    if (currentFilter == el.dataset.species || currentFilter == "all") {
-      el.style.display = "grid"
+  // Get the selected filter value
+  const currentFilter = e.target.dataset.filter;
+  console.log(currentFilter);
+
+  //actually filter the pets down below
+  document.querySelectorAll(".pet-card").forEach(card => {
+    if(currentFilter !=  'all'){
+    if (card.dataset.species == currentFilter) {
+      card.style.display = "grid";
     } else {
-      el.style.display = "none"
+      card.style.display = "none";
     }
-  })
+  }else{
+    card.style.display = 'grid';
+  }
+  });
+  
 }
