@@ -13,7 +13,7 @@ async function start() {
 start()
 
 async function petsArea() {
-  const petsPromise = await fetch("https://learnwebcode.github.io/bootcamp-pet-data/pets.json")
+  const petsPromise = await fetch("https://benevolent-kitsune-fa5e57.netlify.app/.netlify/functions/pets")
   const petsData = await petsPromise.json()
   petsData.forEach(pet => {
     const clone = template.content.cloneNode(true)
@@ -66,15 +66,15 @@ function handleButtonClick(e) {
 
   //actually filter the pets down below
   document.querySelectorAll(".pet-card").forEach(card => {
-    if(currentFilter !=  'all'){
-    if (card.dataset.species == currentFilter) {
-      card.style.display = "grid";
+    if (currentFilter != 'all') {
+      if (card.dataset.species == currentFilter) {
+        card.style.display = "grid";
+      } else {
+        card.style.display = "none";
+      }
     } else {
-      card.style.display = "none";
+      card.style.display = 'grid';
     }
-  }else{
-    card.style.display = 'grid';
-  }
   });
-  
+
 }
